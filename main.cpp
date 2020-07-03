@@ -127,6 +127,33 @@ void double_list::removehead(){
    }
 }
 
+//fungsi untuk menghapus node tail/belakang
+void double_list::removetail(){
+   //jika node kosong
+   if(isempty()==1){
+      cout<<"maaf,linked list kosong"<<endl;
+   }
+   else{
+      //jika jumlah node 1 
+      if(list==1){
+         //nilai di hapus 
+         cout<<"nilai "<<tail->value<<" telah dihapus"<<endl;
+         tail=NULL;//tail 0
+         head=NULL;//head 0
+         list--;//jumlah node dikurangi 1
+      }
+      else{
+         int temp=tail->value;//simpan nilai tail ke temp
+         current=tail;//penugasan current sebagai tail
+         current=current->prev;//penggeseran current kenilai sebelum tail
+         tail->prev->next=NULL;//penghapusan nilai tail
+         tail=current;//penugasan nilai tail yang baru
+         cout<<"nilai "<<temp<<" telah dihapus"<<endl;
+         list--;
+      }
+   }
+}
+
 int main(){
    
    return 0;
