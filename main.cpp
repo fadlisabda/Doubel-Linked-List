@@ -54,6 +54,23 @@ int double_list::isempty(){//untuk mengembalikan nilai 1 atau 0
    }
 }
 
+void double_list::inserthead(int val){//membuat node pada bagian head
+   if(isempty()==1){//jika node kosong
+      current=new node(val);//membuat node current berisi nilai val
+      head=current;//nilai dalam node current menjadi head
+      tail=current;//nilai dalam node current menjadi tail
+      tail->prev=NULL;//node setelah tail 0
+      head->next=NULL;//node sebelum head 0
+   }
+   else{
+      current=new node();//membuat node dengan nilai/data kosong
+      current->next=this->head;//meletakkan node didepan head
+      this->head->prev=current;//meletakkan head di belakang node baru 
+      current->value=val;//memberi nilai/data pada node baru
+      this->head=current;//memberi node baru head
+   }
+}
+
 int main(){
    
    return 0;
