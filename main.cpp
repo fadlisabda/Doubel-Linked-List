@@ -45,6 +45,15 @@ class double_list{//class untuk membuat prototype
          //mengembalikan 0 jika node berisi
 };
 
+int double_list::isempty(){//untuk mengembalikan nilai 1 atau 0
+   if(head==NULL||tail==NULL){//jika node kosong return 1
+      return 1;
+   }
+   else{//jika node berisi return 0
+      return 0;
+   }
+}
+
 int main(){
    
    return 0;
