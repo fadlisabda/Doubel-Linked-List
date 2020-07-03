@@ -1,3 +1,4 @@
+//double linked list 
 #include <iostream>
 using namespace std;
 //membuat node
@@ -44,10 +45,12 @@ class double_list{
    private:
          node *head;//membuat pointer head
          node *tail;//membuat pointer tail
-         node *current;//membuat pointer current
+         node *current;//untuk menyimpan nilai data pada element single linked list ketika diinputkan
          int isempty();//mengembalikan 1 jika node kosong
          //mengembalikan 0 jika node berisi
 };
+
+static int list=0;//menghitung jumlah node masuk dan dihapus
 
 //untuk mengembalikan nilai 1 atau 0
 int double_list::isempty(){
@@ -69,29 +72,58 @@ void double_list::inserthead(int val){
       head->next=NULL;//node sebelum head 0
    }
    else{
-      current = new node();//membuat node dengan nilai/data kosong
-      current->next=this->head;//meletakkan node didepan head
-      this->head->prev=current;//meletakkan head di belakang node baru 
-      current->value=val;//memberi nilai/data pada node baru
-      this->head=current;//memberi node baru head
+      current = new node();//membuat objek current dengan constructor kosong
+      current->next=this->head;//meletakkan current didepan head
+      this->head->prev=current;//meletakkan head di belakang current 
+      current->value=val;//memasukkan nilai val kedalam objek current
+      this->head=current;//menjadikan objek current head
    }
+   list++;
 }
 
 //membuat node pada bagian tail/belakang
 void double_list::inserttail(int val){
    if(isempty()==1){//jika node kosong
       current = new node(val);//membuat node current berisi nilai val
-      head=current;//menjadikan node head
-      tail=current;//menjadikan node tail
+      head=current;//menjadikan current head
+      tail=current;//menjadikan current tail
       tail->next=NULL;//node tail berikutnya 0
    }
    else{
-      current = new node();//membuat node baru
-      current->prev=this->tail;//membuat node dibelakang tail
-      this->tail->next=current;//membuat node didepan tail
-      current->value=val;//membuat nilai/data pada node baru
-      this->tail=current;//memberi node baru tail
-      current->next=NULL;//node berikutnya 0
+      current = new node();//membuat objek current
+      current->prev=this->tail;//membuat current dibelakang tail
+      this->tail->next=current;//membuat current dibelakang tail
+      current->value=val;//membuat nilai/data kedalam objek current
+      this->tail=current;//memberi current tail
+      current->next=NULL;//current berikutnya 0
+   }
+   list++;
+}
+
+//menghapus node pada bagian head
+void double_list::removehead(){
+   if(isempty()==1){
+      //jika node kosong
+      cout<<"Maaf,linked list kosong"<<endl;
+   }
+   //jika node berisi
+   else{
+      if(list==1){
+         //jika node berisi hanya 1
+         cout<<"nilai "<<head->value<<" telah dihapus"<<endl;//nilai dihapus
+         tail=NULL;//tail 0
+         head=NULL;//head 0
+      }
+      else{
+         //jika node lebih dari satu
+         int temp=head->value;//memberikan nilai/data node head ke variabel temp
+         current=head->next;//current sebagai data setelah head
+         head=current->prev;//current sebagai data setelah head
+         current->prev->next=current;//menjadikan current head 
+         head=current;//menjadikan current head
+         cout<<"nilai "<<temp<<" telah dihapus"<<endl;//mengahapus nilai
+      }
+      list--;
    }
 }
 
