@@ -1,12 +1,12 @@
 #include <iostream>
 using namespace std;
-class node{
+class node{//membuat node
    public:
-      int value;
-      node *next;
-      node *prev;
+      int value;//memberi data/nilai pada node
+      node *next;//pointer untuk menuju node berikutnya
+      node *prev;//pointer untuk menuju node sebelumnya
    
-   node(int val,node *n,node *p)
+   node(int val,node *n,node *p)//mendefenisikan data dan pointer
    {
       value=val;
       next=n;
@@ -21,6 +21,8 @@ class node{
 
    }
 };
+
+
 
 int main(){
    
