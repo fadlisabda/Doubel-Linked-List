@@ -154,6 +154,42 @@ void double_list::removetail(){
    }
 }
 
+//menginput nilai pada posisi tertentu
+void double_list::insertbefore(int value,int pos){
+   //jika node kosong
+   if(isempty()==1){
+      cout<<"Maaf,linked list kosong"<<endl;
+   }
+   else{
+      //jika posisi besar dari list
+      if(pos>list){
+         cout<<"jumlah list terlalu sedikit"<<endl;
+      }
+      else{
+         if(pos==1){
+            inserthead(value);//input data pada bagian head
+         }
+         
+         else if(pos==list){
+            inserttail(value);//input data pada bagian tail
+         }
+         else{
+            current=head;
+            node*fixed;
+            for (int i = 1; i < pos; i++)
+            {
+               current=current->next;//penelusuran nilai double linked list
+            }
+            fixed=new node((value),current,current->prev);//instansiasi objek fixed
+            current->prev->next=fixed;//penyisipan objek fixed
+            current->prev=fixed;//penyisipan objek fixed
+            current=fixed;
+            list++;
+         }
+      }
+   }
+}
+
 int main(){
    
    return 0;
