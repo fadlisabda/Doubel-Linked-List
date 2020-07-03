@@ -190,7 +190,109 @@ void double_list::insertbefore(int value,int pos){
    }
 }
 
+//menghapus nilai pada posisi tertentu
+void double_list::removepost(int pos){
+   //jika node kosong
+   if(isempty()==1){
+      cout<<"maaf,linked list kosong"<<endl;
+   }
+   else{
+      //jika posisi besar dari list
+      if(pos>list){
+         cout<<"maaf,range terlalu sedikit"<<endl;
+      }
+      else{
+         if(pos==1){
+            removehead();//hapus data bagian head
+         }
+         else if(pos==list){
+            removetail();//hapus data bagian tail
+         }
+         else{
+            current=head;
+            for(int i=1;i<pos;i++){
+               current=current->next;//penelusuran nilai double linked list
+            }
+            int nilai=current->value;
+            current->prev->next=current->next;//manipulasi objek current
+            current->next->prev=current->prev;//manipulasi objek current
+            cout<<"nilai "<<nilai<<" dihapus dari linked list"<<endl;
+            list--;
+         }
+      }
+   }
+}
+
+//menampilkan seluruh node
+void double_list::print(){
+   current=head;//untuk memulai perulangan dari head
+   while(current!=NULL){//sampai ditemukan nilai null
+      cout<<"isi list :"<<current->value<<endl;//menampilkan nilai
+      current=current->next;
+   }
+}
 int main(){
-   
+   int n,pos;
+   double_list *st;
+   st=new double_list();
+   char pilih;
+   cout<<"operasi linkedlist"<<endl;
+   cout<<"1.inserthead"<<endl;
+   cout<<"2.inserttail"<<endl;
+   cout<<"3.removehead"<<endl;
+   cout<<"4.removetail"<<endl;
+   cout<<"5.insertbefore"<<endl;
+   cout<<"6.removeposition"<<endl;
+   cout<<"7.exit"<<endl;
+   do
+   {
+      cout<<endl;
+      cout<<"pilihan :";
+      cin>>pilih;
+      switch (pilih)
+      {
+      case '1':
+         cout<<"masukkan data :";
+         cin>>n;
+         st->inserthead(n);
+         st->print();
+         break;
+      case '2':
+         cout<<"masukkan data :";
+         cin>>n;
+         st->inserttail(n);
+         st->print();
+         break;
+      case '3':
+         st->removehead();
+         st->print();
+         break;
+      case '4':
+         st->removetail();
+         st->print();
+         break;
+      case '5':
+         cout<<"masukkan data :";
+         cin>>n;
+         cout<<"masukkan posisi :";
+         cin>>pos;         
+         st->insertbefore(n,pos);
+         st->print();
+         break;
+      case '6':
+         int pos;
+         cout<<"masukkan posisi angka yang ingin dihapus :";
+         cin>>pos;         
+         st->removepost(pos);
+         st->print();
+         break;
+      case '7':
+         cout<<"terimaa kasih :";
+         break;
+      default:
+         cout<<"salah pilih";
+         break;
+      }
+   } while (pilih!='7');
    return 0;
 }
