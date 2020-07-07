@@ -233,7 +233,7 @@ void double_list::print(){
 }
 int main(){
    int n,pos;
-   double_list *st;
+   double_list *st;//objek untuk memanggil fungsi 
    st=new double_list();
    char pilih;
    cout<<"operasi linkedlist"<<endl;
